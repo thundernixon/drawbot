@@ -10,7 +10,7 @@ a = (100,100)
 b = (100,200)
 c = (200,200)
 d = (200,100)
-e = (10,10)
+e = (400,400)
 points = [a,b,c,d,e]
 
 for point in points:
@@ -24,5 +24,5 @@ path = BezierPath()
 path.moveTo(a)
 path.curveTo(b,c,d)
 path.lineTo(e)
-
+1
 drawPath(path)

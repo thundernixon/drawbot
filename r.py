@@ -75,4 +75,3 @@ strokeWidth(2)
 
 for point in points:
     printPoint(point[0],point[1])
-
