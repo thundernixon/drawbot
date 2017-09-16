@@ -13,6 +13,11 @@ Variable([
                 value=0.5,
                 minValue=0.15,
                 maxValue=0.95)),
+    dict(name="letterWidth", ui="Slider",
+        args=dict(
+                value=300,
+                minValue=25,
+                maxValue=300)),
     # create a variable called 'useColor'
     # and the related ui is a CheckBox.
     dict(name="useColor", ui="CheckBox"),
@@ -27,9 +32,12 @@ if useColor:
     stroke(c)
 
 baseline = 100;
+leftside = 100;
 
 letterTop = letterHeight + baseline;
 bowlHeight = letterHeight * bowlHeightRatio;
+
+letterRight = letterWidth + leftside
 
 print "letter height is ";
 print letterHeight;
@@ -38,19 +46,24 @@ print bowlHeightRatio;
 print "bowl height is ";
 print bowlHeight;
 
+print "letter width is ";
+print letterWidth;
+
+
+
 lineCap("round")
 
 a = (100,100)
-b = (100,letterTop)
-c = (275,letterTop)
-c2 = (360,letterTop) # top
-c3 = (400,(letterTop - bowlHeight / 4)) # 1/4 of way to of bowl
-d = (400,(letterTop - bowlHeight / 2)) # halfway to bottom of bowl
-d2 = (400,(letterTop - bowlHeight * .75)) # 3/4 of way to bottom of bowl 
-d3 = (360,(letterTop - bowlHeight)) # bottom of bowl
-e = (275,(letterTop - bowlHeight)) # bottom of bowl
-f = (100,(letterTop - bowlHeight)) # bottom of bowl
-g = (400,100)
+b = (100,letterTop) # left
+c = (letterRight * .65 ,letterTop) # 3/4 width
+c2 = (letterRight * .9 ,letterTop) # 7/8 width
+c3 = (letterRight,(letterTop - bowlHeight / 4)) 
+d = (letterRight,(letterTop - bowlHeight / 2)) 
+d2 = (letterRight,(letterTop - bowlHeight * .75)) 
+d3 = (letterRight * .9 ,(letterTop - bowlHeight)) # 7/8 width
+e = (letterRight * .65 ,(letterTop - bowlHeight)) # 3/4 width
+f = (100,(letterTop - bowlHeight)) # left
+g = (letterRight,100)
 points = [a,b,c,c2,c3,d,d2,d3,e,f,g]
 
 
