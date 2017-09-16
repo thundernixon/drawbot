@@ -16,7 +16,7 @@ Variable([
     dict(name="letterWidth", ui="Slider",
         args=dict(
                 value=300,
-                minValue=25,
+                minValue=10,
                 maxValue=300)),
     # create a variable called 'useColor'
     # and the related ui is a CheckBox.
@@ -37,17 +37,24 @@ leftside = 100;
 letterTop = letterHeight + baseline;
 bowlHeight = letterHeight * bowlHeightRatio;
 
-letterRight = letterWidth + leftside
+letterRight = letterWidth * 300 + leftside
 
 print "letter height is ";
 print letterHeight;
+print "///";
 print "bowl ratio is ";
 print bowlHeightRatio;
+print "///";
 print "bowl height is ";
 print bowlHeight;
+print "///";
 
 print "letter width is ";
 print letterWidth;
+print "///";
+print "letter right is ";
+print letterRight;
+print "///";
 
 
 
@@ -55,19 +62,19 @@ lineCap("round")
 
 a = (100,100)
 b = (100,letterTop) # left
-c = (letterRight * .65 ,letterTop) # 3/4 width
-c2 = (letterRight * .9 ,letterTop) # 7/8 width
-c3 = (letterRight,(letterTop - bowlHeight / 4)) 
-d = (letterRight,(letterTop - bowlHeight / 2)) 
-d2 = (letterRight,(letterTop - bowlHeight * .75)) 
-d3 = (letterRight * .9 ,(letterTop - bowlHeight)) # 7/8 width
-e = (letterRight * .65 ,(letterTop - bowlHeight)) # 3/4 width
+c = (leftside + (letterWidth * .65) ,letterTop) # 3/4 width
+c2 = (leftside + (letterWidth * .9) ,letterTop) # 7/8 width
+c3 = (leftside + letterWidth,(letterTop - bowlHeight / 4)) 
+d = (leftside + letterWidth, (letterTop - bowlHeight / 2)) 
+d2 = (leftside + letterWidth,(letterTop - bowlHeight * .75)) 
+d3 = (leftside + (letterWidth * .9) ,(letterTop - bowlHeight)) # 7/8 width
+e = (leftside + (letterWidth * .65) ,(letterTop - bowlHeight)) # 3/4 width
 f = (100,(letterTop - bowlHeight)) # left
-g = (letterRight,100)
+g = (leftside + letterWidth,100)
 points = [a,b,c,c2,c3,d,d2,d3,e,f,g]
 
 
-print c2;
+# print e;
 
 fill(None)
 
