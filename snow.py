@@ -1,14 +1,5 @@
 size(500,500);
 
-
-# Variable([
-#     dict(name="snowSize", ui="Slider",
-#         args=dict(
-#                 value=10,
-#                 minValue=3,
-#                 maxValue=25))
-#     ], globals())
-
 # gradient for night sky
 def makeSky():
     linearGradient((250,0),(250,500), ([0,0,.5], [0,0,.15]))
