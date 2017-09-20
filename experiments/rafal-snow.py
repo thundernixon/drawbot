@@ -44,7 +44,7 @@ for frame in range(frames):
 
 
 # saves gif of animation
-# saveImage('mountains.gif')
+saveImage('mountains.gif')
     
 
     
