@@ -1,7 +1,7 @@
 w = 1000
 h = w
 
-frames = 2
+frames = 6
 divs = 20
 
 def interpolate(a, b, t):
