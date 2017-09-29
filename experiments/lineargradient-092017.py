@@ -39,4 +39,4 @@ for frame in range(frames):
             fill( interpolateB( colorA[0]/(j/divs+1), colorB[0], t ), interpolate(colorA[1]/(j/divs+1), colorB[1], t), interpolate(colorA[2]/(j/divs+1), colorB[2], t),.25)
             rect(0,j*(h/divs),w, (h/divs*2))
             blendMode("normal")
-saveImage('../gifs/gradient-multiply-3.mov')
+# saveImage('../gifs/gradient-multiply-3.mov')

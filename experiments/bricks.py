@@ -45,4 +45,4 @@ for frame in range(frames):
     makeBackground()
     makeRows()
     
-# saveImage('bricks.gif')
+saveImage('../gifs/bricks.mov')
