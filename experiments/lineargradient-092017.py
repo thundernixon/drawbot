@@ -1,8 +1,8 @@
 w = 1000
 h = w
 
-frames = 30
-divs = 16
+frames = 2
+divs = 20
 
 def interpolate(a, b, t):
     interAB = a*(1-t) + b*t
