@@ -1,37 +1,54 @@
 
-Variable([
-    dict(name="rotation", ui="Slider",
-            args=dict(
-                # some vanilla specific
-                # setting for a slider
-                value=0,
-                minValue=0,
-                maxValue=720)),
-    dict(name="ovalsPerRow", ui="Slider",
-            args=dict(
-                # some vanilla specific
-                # setting for a slider
-                value=1,
-                minValue=1,
-                maxValue=40))
-    ], globals())
+# Variable([
+#     dict(name="rotation", ui="Slider",
+#             args=dict(
+#                 # some vanilla specific
+#                 # setting for a slider
+#                 value=0,
+#                 minValue=0,
+#                 maxValue=720)),
+#     dict(name="ovalsPerRow", ui="Slider",
+#             args=dict(
+#                 # some vanilla specific
+#                 # setting for a slider
+#                 value=1,
+#                 minValue=1,
+#                 maxValue=40))
+#     ], globals())
+# ovals = int(ovalsPerRow)
 
-canvasWidth = 1000
-canvasHeight = canvasWidth
+ovals = 10
+
+w = 1000
+h = w
 ovals = 5
 
+frames = 60
 
 
 
-ovals = int(ovalsPerRow)
+for i in range(frames):
+    newPage(w, h)
+    #move origin of each page to center of canvas
+    translate(w/2, w/2)
+    # rotate each page so that it will end up rotating 360 degrees
+    rotate(i * 360/frames)
 
-for i in range(0,ovals):
-    # fill(1,1,.5)
-    # rect(5,5,canvasWidth, canvasHeight)
-    ovalSize = canvasWidth/((ovals * 2)+1)
-    x = ovalSize + (i * ovalSize*2)
-    for j in range(0,ovals):
-        translate(canvasWidth/2, canvasWidth/2)
-        rotate(rotation)
-        y = ovalSize + (j * ovalSize * 2)
-        oval(x,y, ovalSize, ovalSize)
+    rotation = 360/frames * i
+    fill(1,1,.5,.25)
+    stroke(1,0,0)
+    rect(0,0,w, h)
+    ovalSize = w/((ovals * 2)+1)
+
+    for j in range(ovals):
+        x = ovalSize + (j * ovalSize*2)
+        print "frame is " + str(i) + " rect x " + str(j) + str(x)  
+        for k in range(ovals):
+            translate(-w/2, -w/2)
+            y = ovalSize + (k * ovalSize * 2)
+            fill(0,0,0)
+            print "frame is " + str(i) + " rect y " + str(k) + str(y)
+            rect(x,y, ovalSize, ovalSize)
+
+
+saveImage('../gifs/rotating-squares.gif')
