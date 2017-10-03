@@ -4,12 +4,9 @@ w = 1000
 h = 1000
 squares = 12
 
-
-
-gridDistance = 162
-squareSize = 120
-
 frames = 60
+
+#  interpolate colors
 
 def interpolate(a, b, t):
     interAB = a*(1-t) + b*t
@@ -51,4 +48,4 @@ for frame in range(frames):
                 fill( interpolate( colorB[0], colorA[0], t * random() ), interpolate(colorB[1] * random() *.5, colorA[1], t * random()), interpolate(colorB[2], colorA[2], t * random()), 1)
                 oval(x-.5*(circleWidth-squareWidth), y-.5*(circleWidth-squareWidth), circleWidth, circleWidth)
 
-saveImage('../gifs/checkerboard-alt-6.gif')
+# saveImage('../gifs/checkerboard-alt-6.gif')
