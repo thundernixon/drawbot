@@ -21,16 +21,14 @@ for frame in range(frames):
     currentFrame = frame + 1 # get number of current frame
     # set up black page
     newPage(w,h)
-    
-    save()
-    translate(x=0, y=-100)
-    
+
+
+    # set up the shape of the lowercase "a"
     # ////////// shape ///////////
 
-    bez = BezierPath()
+    bez = BezierPath() # set up bezier shorthand
 
-    # big shape
-    # big shape
+    # //// hook and stem of "a" ////
     bez.moveTo((200, 650))
     bez.curveTo(
         (200, 888), # handle one
@@ -63,7 +61,7 @@ for frame in range(frames):
         )
     bez.closePath()
 
-    # //// bowl /////
+    # //// bowl of "a" /////
 
     bez.moveTo((600, 576))
     bez.lineTo((406, 540))
@@ -114,31 +112,27 @@ for frame in range(frames):
 
     # ////////// END shape //////////
     
-    restore()
-    
     frameDuration(.125)
-    # fill(0+((1/frames)*frame),0+(((1/frames)*frame)/2),0) # black to orange
-    # fill(0,1-((1/frames)*frame),0) # black to red
-    fill(0)
 
+    fill(0)
     rect(0,0,1000,1000)
+
     ## make condition for number of squares
     if currentFrame > (frames // 2): # if current frame is over half of total
         squares = squares - 1 # take current number of squares and shrink by one for each frame
-        # rotate(90)
-        # translate(0,-h)
     else:
         squares = currentFrame # take current number of squares and grow by one for each frame
     for i in range(squares):
+
+        # make squares perfectly fit inside canvas, no matter how many squares there are
         squareWidth = w/((squares * 2)+1)
-        circleWidth = squareWidth + (squareWidth*.15)
         x = squareWidth + (i * squareWidth*2)
         for j in range(squares):
             t = i/squares
-            
-            # fill(random()*(j+1/currentFrame), 0, random()*(j+1)/currentFrame+currentFrame, .75)
             squareHeight = h/((squares * 2)+1)
             y = squareHeight + (j * squareHeight*2)
+
+            #if a square is inside the bezier paths of the "a", then fill with white
             if bez.pointInside((x,y)):
                     fill(1)
             else:
