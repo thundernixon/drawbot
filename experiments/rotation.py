@@ -38,7 +38,8 @@ for i in range(frames):
     fill(1,1,.5,.25)
     stroke(1,0,0)
     rect(0,0,w, h)
-    ovalSize = w/((ovals * 2)+1)
+    # ovalSize = w/((ovals * 2)+1)
+    # ovalSize = 10
 
     for j in range(ovals):
         x = ovalSize + (j * ovalSize*2)
@@ -51,4 +52,4 @@ for i in range(frames):
             rect(x,y, ovalSize, ovalSize)
 
 
-saveImage('../gifs/rotating-squares.gif')
+# saveImage('../gifs/rotating-squares.gif')
