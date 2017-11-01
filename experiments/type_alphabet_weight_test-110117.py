@@ -51,15 +51,15 @@ def testWeights(string):
         if counter % 3 == 0:
             fill(fontColor3)
             fontSize(fontSize3)
-            font("Times New Roman Bold") ################# ✅ REPLACE WITH YOUR HIGH CONTRAST FONT ✅ #################
+            font("Source Serif Pro Bold") ################# ✅ REPLACE WITH YOUR HIGH CONTRAST FONT ✅ #################
         elif (counter + 1) % 3 ==0:
             fill(fontColor2)
             fontSize(fontSize2)
-            font("Times New Roman") ################# ✅ REPLACE WITH YOUR REGULAR CONTRAST FONT ✅ #################
+            font("Source Serif Pro") ################# ✅ REPLACE WITH YOUR REGULAR CONTRAST FONT ✅ #################
         else:
             fill(fontColor1)
             fontSize(fontSize1)
-            font("Verdana") ################# ✅ REPLACE WITH YOUR LOW CONTRAST FONT ✅ #################
+            font("Source Sans") ################# ✅ REPLACE WITH YOUR LOW CONTRAST FONT ✅ #################
         
         text(char, (positionX, positionY))
         letterWidth, letterHeight = textSize(char)
