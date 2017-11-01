@@ -57,7 +57,7 @@ def testWeights(string):
     for char in newString:
         if counter % 3 == 0:
             fill(fontColor3)
-            fontSize(fontSize3
+            fontSize(fontSize3)
             font("Times New Roman Bold") ################# ✅ REPLACE WITH YOUR HIGH CONTRAST FONT ✅ #################
         elif (counter + 1) % 3 ==0:
             fill(fontColor2)
