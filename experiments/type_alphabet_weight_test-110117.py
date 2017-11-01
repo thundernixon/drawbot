@@ -2,22 +2,16 @@ Variable([
     dict(name="customString", ui="TextEditor"),
     dict(name="fontSize1", ui="Slider",
             args=dict(
-                # some vanilla specific
-                # setting for a slider
                 value=83,
                 minValue=75,
                 maxValue=125)),
     dict(name="fontSize2", ui="Slider",
             args=dict(
-                # some vanilla specific
-                # setting for a slider
                 value=100,
                 minValue=75,
                 maxValue=125)),
     dict(name="fontSize3", ui="Slider",
             args=dict(
-                # some vanilla specific
-                # setting for a slider
                 value=100,
                 minValue=75,
                 maxValue=125)),
@@ -49,7 +43,6 @@ def testWeights(string):
     starterPosY = 120
     positionX = starterPosX
     positionY = height()-150
-    # generateNewString(string)
     newString = ""
     for char in string:
         newString += char*3
@@ -57,7 +50,7 @@ def testWeights(string):
     for char in newString:
         if counter % 3 == 0:
             fill(fontColor3)
-            fontSize(fontSize3
+            fontSize(fontSize3)
             font("Times New Roman Bold") ################# ✅ REPLACE WITH YOUR HIGH CONTRAST FONT ✅ #################
         elif (counter + 1) % 3 ==0:
             fill(fontColor2)
@@ -68,7 +61,7 @@ def testWeights(string):
             fontSize(fontSize1)
             font("Verdana") ################# ✅ REPLACE WITH YOUR LOW CONTRAST FONT ✅ #################
         
-        text(char, (positionX, positionY)) # to do: set this equal to something based on font size
+        text(char, (positionX, positionY))
         letterWidth, letterHeight = textSize(char)
         
         textWidth += letterWidth
@@ -78,14 +71,14 @@ def testWeights(string):
             letterWidth, letterHeight = textSize(" ")
             positionX += letterWidth + 10
         
-        if counter % 9 == 0: # to do: set this equal to something based on overall text width
+        if counter % 9 == 0:
             lineCount += 1
             positionX = starterPosX
             positionY -= starterPosY
 
         counter += 1
                 
-        # to do: if letter doesn't exist, replace with n
+        # to do: if letter doesn't exist in the supplied font, replace with "n" or some other user-defined string
 
 
 ################# ✅ MAKE YOUR STRING HERE, THEN SET AS AN ARGUMENT IN FUNCTION CALL ✅ #################
