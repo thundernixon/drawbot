@@ -21,6 +21,26 @@ letter_e = """
 --xxxx-
 -------
 """
+letter_c = """
+-------
+--xxx--
+-x---x-
+-x-----
+-x-----
+-x-----
+--xxxx-
+-------
+"""
+missing_glyph = """
+xxxxxxx
+x-----x
+x-----x
+x-----x
+x-----x
+x-----x
+x-----x
+xxxxxxx
+"""
 
 
 
@@ -46,7 +66,22 @@ def drawShape(shape):
                 counter = counter + 1
             x = x + gridSize
         y = y - gridSize   
-        
-drawShape(letter_a)
-translate(7*gridSize)
-drawShape(letter_e)
+
+
+fontDictionary = {
+    "a": letter_a,
+    "e": letter_e,
+    "c": letter_c,
+    }
+    
+
+def drawText(txt):
+    for char in txt:
+        print char
+        shape = fontDictionary.get(char, missing_glyph)
+        drawShape(shape)
+        translate(7*gridSize,0)
+
+drawText("abc")
+
+
