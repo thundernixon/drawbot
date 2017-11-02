@@ -46,10 +46,7 @@ def testWeights(string, fontName1, fontName2, fontName3):
         newString += char*3
     
     for char in newString:
-        if fontXHeight() == 51.85546875: # attempt to detect fallback font and make light gray // not working
-            fill(.8,.8,.5)
-            print "wope"
-        elif counter % 3 == 0:
+        if counter % 3 == 0:
             fill(fontColor3)
             fontSize(fontSize3)
             font(fontName3)
