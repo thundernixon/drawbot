@@ -23,10 +23,6 @@ Variable([
 
 defaultFontColor1 = [.75,0,.75]
 
-print "font size 1 is " + str(fontSize1) + " pt"
-print "font size 2 is " + str(fontSize2) + " pt"
-print "font size 3 is " + str(fontSize3) + " pt"
-
 size('A3')
 
 fontSize(100)
@@ -55,8 +51,7 @@ def testWeights(string, fontName1, fontName2, fontName3):
             font(fontName3) ################# ✅ REPLACE WITH YOUR HIGH CONTRAST FONT ✅ #################
 
             if lockXHeight:
-                fontSize(fontSize3 * calcRatio(fontName3, fontSize3))
-
+                fontSize(newFontSize3)
 
         elif (counter + 1) % 3 ==0:
             fill(fontColor2)
@@ -64,7 +59,7 @@ def testWeights(string, fontName1, fontName2, fontName3):
             font(fontName2) ################# ✅ REPLACE WITH YOUR REGULAR CONTRAST FONT ✅ #################
 
             if lockXHeight:
-                fontSize(fontSize2 * calcRatio(fontName2, fontSize2))
+                fontSize(newFontSize2)
 
         else:
             fill(fontColor1)
@@ -90,7 +85,7 @@ def testWeights(string, fontName1, fontName2, fontName3):
                 
         # to do: if letter doesn't exist in the supplied font, replace with "n" or some other user-defined string
 
-def calcRatio(targetFontName, targetFontSize):
+def calcNewSize(targetFontName, targetFontSize):
     # source font (font1)
     fontSize(fontSize1)
     font(fontName1)
@@ -101,7 +96,7 @@ def calcRatio(targetFontName, targetFontSize):
     font(targetFontName)
     xHeight2 = fontXHeight()
 
-    return xHeight1 / xHeight2
+    return targetFontSize * (xHeight1 / xHeight2)
 
 ################# ✅ MAKE YOUR STRING HERE, THEN SET AS AN ARGUMENT IN FUNCTION CALL ✅ #################
 import string
@@ -110,10 +105,24 @@ heylook = "testyerfonts"
 
 fontName1, fontName2, fontName3 = "Helvetica", "Vulf Mono", "Times New Roman"
 
+print "font size 1 is " + str(fontSize1) + " pt"
+
+if lockXHeight:
+    newFontSize2 = calcNewSize(fontName2, fontSize2)
+    newFontSize3 = calcNewSize(fontName3, fontSize3)
+    
+    print "new font size 2 is %s pt" %newFontSize2
+    print "new font size 3 is %s pt" %newFontSize3
+
+else:
+    print "font size 2 is " + str(fontSize2) + " pt"
+    print "font size 3 is " + str(fontSize3) + " pt"
+
 if customString != "":
     testWeights(customString, fontName1, fontName2, fontName3) # use your string as an argument
 else:
     testWeights(alpha, fontName1, fontName2, fontName3)
+
 
 ################# 😺 SAVE AS A PDF IF YOU'D LIKE TO PRINT 😺 #################
 # saveImage("give-it-a-title.pdf")
