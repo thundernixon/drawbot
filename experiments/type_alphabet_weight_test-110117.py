@@ -1,6 +1,6 @@
 Variable([
     dict(name="customString", ui="TextEditor"),
-    dict(name="lockXHeight", ui="CheckBox"),
+    dict(name="matchXHeights", ui="CheckBox"),
     dict(name="fontSize1", ui="Slider",
             args=dict(
                 value=83,
@@ -30,7 +30,6 @@ fallbackFont("Arial")
 
 counter = 1
 
-
 ################# 😺 TRIPLES LETTERS IN YOUR STRING, THEN SETS THEM AS TEXT 😺 #################
 def testWeights(string, fontName1, fontName2, fontName3):
     counter = 1
@@ -50,7 +49,7 @@ def testWeights(string, fontName1, fontName2, fontName3):
             fontSize(fontSize3)
             font(fontName3) ################# ✅ REPLACE WITH YOUR HIGH CONTRAST FONT ✅ #################
 
-            if lockXHeight:
+            if matchXHeights:
                 fontSize(newFontSize3)
 
         elif (counter + 1) % 3 ==0:
@@ -58,7 +57,7 @@ def testWeights(string, fontName1, fontName2, fontName3):
             fontSize(fontSize2)
             font(fontName2) ################# ✅ REPLACE WITH YOUR REGULAR CONTRAST FONT ✅ #################
 
-            if lockXHeight:
+            if matchXHeights:
                 fontSize(newFontSize2)
 
         else:
@@ -107,10 +106,10 @@ fontName1, fontName2, fontName3 = "Helvetica", "Vulf Mono", "Times New Roman"
 
 print "font size 1 is " + str(fontSize1) + " pt"
 
-if lockXHeight:
+if matchXHeights:
     newFontSize2 = calcNewSize(fontName2, fontSize2)
     newFontSize3 = calcNewSize(fontName3, fontSize3)
-    
+
     print "new font size 2 is %s pt" %newFontSize2
     print "new font size 3 is %s pt" %newFontSize3
 
