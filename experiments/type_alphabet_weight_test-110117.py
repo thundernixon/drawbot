@@ -1,5 +1,6 @@
 Variable([
     dict(name="customString", ui="TextEditor"),
+    dict(name="matchXHeights", ui="CheckBox"),
     dict(name="fontSize1", ui="Slider",
             args=dict(
                 value=83,
@@ -22,10 +23,6 @@ Variable([
 
 defaultFontColor1 = [.75,0,.75]
 
-print "font size 1 is " + str(fontSize1) + " pt"
-print "font size 2 is " + str(fontSize2) + " pt"
-print "font size 3 is " + str(fontSize3) + " pt"
-
 size('A3')
 
 fontSize(100)
@@ -33,9 +30,8 @@ fallbackFont("Arial")
 
 counter = 1
 
-
 ################# 😺 TRIPLES LETTERS IN YOUR STRING, THEN SETS THEM AS TEXT 😺 #################
-def testWeights(string):
+def testWeights(string, fontName1, fontName2, fontName3):
     counter = 1
     lineCount = 1
     textWidth = 0
@@ -51,15 +47,23 @@ def testWeights(string):
         if counter % 3 == 0:
             fill(fontColor3)
             fontSize(fontSize3)
-            font("Source Serif Pro Bold") ################# ✅ REPLACE WITH YOUR HIGH CONTRAST FONT ✅ #################
+            font(fontName3) ################# ✅ REPLACE WITH YOUR HIGH CONTRAST FONT ✅ #################
+
+            if matchXHeights:
+                fontSize(newFontSize3)
+
         elif (counter + 1) % 3 ==0:
             fill(fontColor2)
             fontSize(fontSize2)
-            font("Source Serif Pro") ################# ✅ REPLACE WITH YOUR REGULAR CONTRAST FONT ✅ #################
+            font(fontName2) ################# ✅ REPLACE WITH YOUR REGULAR CONTRAST FONT ✅ #################
+
+            if matchXHeights:
+                fontSize(newFontSize2)
+
         else:
             fill(fontColor1)
             fontSize(fontSize1)
-            font("Source Sans") ################# ✅ REPLACE WITH YOUR LOW CONTRAST FONT ✅ #################
+            font(fontName1) ################# ✅ REPLACE WITH YOUR LOW CONTRAST FONT ✅ #################
         
         text(char, (positionX, positionY))
         letterWidth, letterHeight = textSize(char)
@@ -80,16 +84,44 @@ def testWeights(string):
                 
         # to do: if letter doesn't exist in the supplied font, replace with "n" or some other user-defined string
 
+def calcNewSize(targetFontName, targetFontSize):
+    # source font (font1)
+    fontSize(fontSize1)
+    font(fontName1)
+    xHeight1 = fontXHeight()
+    
+    # target font
+    fontSize(targetFontSize)
+    font(targetFontName)
+    xHeight2 = fontXHeight()
+
+    return targetFontSize * (xHeight1 / xHeight2)
 
 ################# ✅ MAKE YOUR STRING HERE, THEN SET AS AN ARGUMENT IN FUNCTION CALL ✅ #################
 import string
 alpha = string.lowercase
 heylook = "testyerfonts"
 
-if customString != "":
-    testWeights(customString) # use your string as an argument
+fontName1, fontName2, fontName3 = "Helvetica", "Vulf Mono", "Times New Roman"
+
+print "font size 1 is " + str(fontSize1) + " pt"
+
+if matchXHeights:
+    newFontSize2 = calcNewSize(fontName2, fontSize2)
+    newFontSize3 = calcNewSize(fontName3, fontSize3)
+
+    print "new font size 2 is %s pt" %newFontSize2
+    print "new font size 3 is %s pt" %newFontSize3
+
 else:
-    testWeights(alpha)
+    print "font size 2 is " + str(fontSize2) + " pt"
+    print "font size 3 is " + str(fontSize3) + " pt"
+
+if customString != "":
+    testWeights(customString, fontName1, fontName2, fontName3) # use your string as an argument
+else:
+    testWeights(alpha, fontName1, fontName2, fontName3)
+
 
 ################# 😺 SAVE AS A PDF IF YOU'D LIKE TO PRINT 😺 #################
 # saveImage("give-it-a-title.pdf")
