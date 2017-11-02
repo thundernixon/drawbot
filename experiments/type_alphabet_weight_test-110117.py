@@ -3,7 +3,7 @@ Variable([
     dict(name="matchXHeights", ui="CheckBox"),
     dict(name="fontSize1", ui="Slider",
             args=dict(
-                value=83,
+                value=100,
                 minValue=75,
                 maxValue=125)),
     dict(name="fontSize2", ui="Slider",
@@ -28,6 +28,8 @@ size('A3')
 fontSize(100)
 fallbackFont("Arial")
 
+print fontXHeight()
+
 counter = 1
 
 ################# 😺 TRIPLES LETTERS IN YOUR STRING, THEN SETS THEM AS TEXT 😺 #################
@@ -44,10 +46,13 @@ def testWeights(string, fontName1, fontName2, fontName3):
         newString += char*3
     
     for char in newString:
-        if counter % 3 == 0:
+        if fontXHeight() == 51.85546875: # attempt to detect fallback font and make light gray // not working
+            fill(.8,.8,.5)
+            print "wope"
+        elif counter % 3 == 0:
             fill(fontColor3)
             fontSize(fontSize3)
-            font(fontName3) ################# ✅ REPLACE WITH YOUR HIGH CONTRAST FONT ✅ #################
+            font(fontName3)
 
             if matchXHeights:
                 fontSize(newFontSize3)
@@ -55,7 +60,7 @@ def testWeights(string, fontName1, fontName2, fontName3):
         elif (counter + 1) % 3 ==0:
             fill(fontColor2)
             fontSize(fontSize2)
-            font(fontName2) ################# ✅ REPLACE WITH YOUR REGULAR CONTRAST FONT ✅ #################
+            font(fontName2)
 
             if matchXHeights:
                 fontSize(newFontSize2)
@@ -63,7 +68,7 @@ def testWeights(string, fontName1, fontName2, fontName3):
         else:
             fill(fontColor1)
             fontSize(fontSize1)
-            font(fontName1) ################# ✅ REPLACE WITH YOUR LOW CONTRAST FONT ✅ #################
+            font(fontName1)
         
         text(char, (positionX, positionY))
         letterWidth, letterHeight = textSize(char)
@@ -82,13 +87,13 @@ def testWeights(string, fontName1, fontName2, fontName3):
 
         counter += 1
                 
-        # to do: if letter doesn't exist in the supplied font, replace with "n" or some other user-defined string
-
+        
 def calcNewSize(targetFontName, targetFontSize):
     # source font (font1)
     fontSize(fontSize1)
     font(fontName1)
     xHeight1 = fontXHeight()
+    print fontXHeight()
     
     # target font
     fontSize(targetFontSize)
@@ -97,12 +102,11 @@ def calcNewSize(targetFontName, targetFontSize):
 
     return targetFontSize * (xHeight1 / xHeight2)
 
-################# ✅ MAKE YOUR STRING HERE, THEN SET AS AN ARGUMENT IN FUNCTION CALL ✅ #################
+################# ✅ You can add custom fonts here ✅ #################
 import string
 alpha = string.lowercase
-heylook = "testyerfonts"
 
-fontName1, fontName2, fontName3 = "Helvetica", "Verdana", "Times New Roman"
+fontName1, fontName2, fontName3 = "Courier", "Verdana", "Times New Roman"
 
 print "font size 1 is " + str(fontSize1) + " pt"
 
@@ -121,6 +125,12 @@ if customString != "":
     testWeights(customString, fontName1, fontName2, fontName3) # use your string as an argument
 else:
     testWeights(alpha, fontName1, fontName2, fontName3)
+
+
+#### to do: if letter doesn't exist in the supplied font, replace with "n" or some other user-defined string. possible method(?):
+# if fontXheight is equal to fallback font x height (51.85546875 for Arial)
+# make character light gray
+# and maybe substitute with rectangle / asterisk / U+25A1 (white square) □
 
 
 ################# 😺 SAVE AS A PDF IF YOU'D LIKE TO PRINT 😺 #################
