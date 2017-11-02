@@ -102,7 +102,7 @@ import string
 alpha = string.lowercase
 heylook = "testyerfonts"
 
-fontName1, fontName2, fontName3 = "Helvetica", "Monaco", "Times New Roman"
+fontName1, fontName2, fontName3 = "Helvetica", "Verdana", "Times New Roman"
 
 print "font size 1 is " + str(fontSize1) + " pt"
 
