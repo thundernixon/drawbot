@@ -28,8 +28,6 @@ size('A3')
 fontSize(100)
 fallbackFont("Arial")
 
-print fontXHeight()
-
 counter = 1
 
 ################# 😺 TRIPLES LETTERS IN YOUR STRING, THEN SETS THEM AS TEXT 😺 #################
@@ -103,7 +101,7 @@ def calcNewSize(targetFontName, targetFontSize):
 import string
 alpha = string.lowercase
 
-fontName1, fontName2, fontName3 = "Courier", "Verdana", "Times New Roman"
+fontName1, fontName2, fontName3 = "bilak-typecooker Regular", "Verdana", "Times New Roman"
 
 print "font size 1 is " + str(fontSize1) + " pt"
 
