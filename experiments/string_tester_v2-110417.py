@@ -1,5 +1,12 @@
+from AppKit import NSColor
+_color = NSColor.colorWithCalibratedRed_green_blue_alpha_(.75, .75, .75, 1)
 Variable([
     dict(name="customString", ui="TextEditor"),
+    dict(name="lineHeight", ui="Slider",
+            args=dict(
+                value=120,
+                minValue=80,
+                maxValue=160)),
     dict(name="matchXHeights", ui="CheckBox"),
     dict(name="fontSize1", ui="Slider",
             args=dict(
@@ -19,9 +26,8 @@ Variable([
     dict(name="fontColor1", ui="ColorWell"),
     dict(name="fontColor2", ui="ColorWell"),
     dict(name="fontColor3", ui="ColorWell"),
-    ], globals())
-
-defaultFontColor1 = [.75,0,.75]
+    dict(name="missingGlyphColor", ui="ColorWell", args=dict(color=_color)),
+], globals())
 
 size('A3')
 
@@ -72,26 +78,17 @@ def listFontGlyphNames(fontName):
 fontName = "bilak-typecooker Regular"
 glyphNames = listFontGlyphNames(fontName)
 
-print glyphNames
-
 t = FormattedString(font=fontName)
 t.appendGlyph(*glyphNames)
 
-textBox(t, (0, 0, width(), height()))
+# textBox(t, (0, 0, width(), height()))
 
-# ? for glyph in glyphNames, check if char matches ANY glyph in the list, and set a value to true
-# if value is false, make fill gray
-
-def checkIfGlyphExists(char):
-    for glyph in glyphNames:
-        if char in glyphNames:
-            glyphMatch = 1
-        else:
-            glyphMatch = 0
-    if glyphMatch == 0:
-        return fill(0.8,0,0)
+def checkIfGlyphExists(char, fontToCheck, fontColor):
+    glyphNamesInFont = listFontGlyphNames(fontToCheck)
+    if char in glyphNamesInFont:
+        return fill(fontColor) 
     else:
-        return fill(fontColor1)
+        return fill(missingGlyphColor)
 
 ################# 😺 TRIPLES LETTERS IN YOUR STRING, THEN SETS THEM AS TEXT 😺 #################
 def testWeights(string, fontName1, fontName2, fontName3):
@@ -99,27 +96,32 @@ def testWeights(string, fontName1, fontName2, fontName3):
     lineCount = 1
     textWidth = 0
     starterPosX = 50
-    starterPosY = 120
+    starterPosY = 125
+    lineHeightValue = lineHeight
     positionX = starterPosX
-    positionY = height()-150
+    positionY = height()-starterPosY
     newString = ""
     for char in string:
         newString += char*3
     
     for char in newString:
         if counter % 3 == 0:
-            # checkIfGlyphExists(char)
-            fill(fontColor3)
+            # fill(fontColor3)
+            
             fontSize(fontSize3)
+            # checkIfGlyphExists(char, "3")
+            checkIfGlyphExists(char, fontName3, fontColor3)
             font(fontName3)
 
             if matchXHeights:
                 fontSize(newFontSize3)
 
         elif (counter + 1) % 3 ==0:
-            # checkIfGlyphExists(char)
-            fill(fontColor2)
+            # fill(fontColor2)
+            
             fontSize(fontSize2)
+            # checkIfGlyphExists(char, "2")
+            checkIfGlyphExists(char, fontName2, fontColor2)
             font(fontName2)
 
             if matchXHeights:
@@ -127,20 +129,14 @@ def testWeights(string, fontName1, fontName2, fontName3):
 
         else:
             # fill(fontColor1)
-            checkIfGlyphExists(char)
-            for glyph in glyphNames:
-                if char in glyphNames:
-                    glyphMatch = 1
-                else:
-                    glyphMatch = 0
-            if glyphMatch == 0:
-                fill(0.8,0.8,0.8)
-            else:
-                fill(fontColor1)
+            
             fontSize(fontSize1)
+            checkIfGlyphExists(char, fontName1, fontColor1)
             font(fontName1)
         
         text(char, (positionX, positionY))
+        
+        ### positions text and controls line wrapping
         letterWidth, letterHeight = textSize(char)
         
         textWidth += letterWidth
@@ -153,7 +149,7 @@ def testWeights(string, fontName1, fontName2, fontName3):
         if counter % 9 == 0:
             lineCount += 1
             positionX = starterPosX
-            positionY -= starterPosY
+            positionY -= lineHeightValue
 
         counter += 1
         
@@ -177,7 +173,7 @@ def calcNewSize(targetFontName, targetFontSize):
 import string
 alpha = string.lowercase
 
-fontName1, fontName2, fontName3 = "bilak-typecooker Regular", "Verdana", "Times New Roman"
+fontName1, fontName2, fontName3 = "bilak-typecooker Regular", "Stroop Sans Book", "CooperBlackStd"
 
 print "font size 1 is " + str(fontSize1) + " pt"
 
@@ -198,11 +194,22 @@ else:
     testWeights(alpha, fontName1, fontName2, fontName3)
 
 
-#### to do: if letter doesn't exist in the supplied font, replace with "n" or some other user-defined string. possible method(?):
-# if fontXheight is equal to fallback font x height (51.85546875 for Arial)
-# make character light gray
-# and maybe substitute with rectangle / asterisk / U+25A1 (white square) □
+#### to do: add font names and current date to test
+
+import datetime
+
+now = datetime.datetime.now()
+metadata = str(now) + ", font 1 is " + fontName1 + ", font 2 is " + fontName2 + ", font 3 is " + fontName3
+
+font("Verdana")
+fontSize(12)
+
+textBox(metadata, (20, 0, width(), 30))
+
+
+#### to do: if letter doesn't exist in the supplied font, replace with "n" or some other user-defined string.
+#? maybe substitute with rectangle / asterisk / U+25A1 (white square) □
 
 
 ################# 😺 SAVE AS A PDF IF YOU'D LIKE TO PRINT 😺 #################
-# saveImage("give-it-a-title.pdf")
+# saveImage("../exports/fonttest-110417.pdf")
