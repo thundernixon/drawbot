@@ -173,7 +173,7 @@ def calcNewSize(targetFontName, targetFontSize):
 import string
 alpha = string.lowercase
 
-fontName1, fontName2, fontName3 = "bilak-typecooker Regular", "Stroop Sans Book", "CooperBlackStd"
+fontName1, fontName2, fontName3 = "Times New Roman", "Arial", "CooperBlackStd"
 
 print "font size 1 is " + str(fontSize1) + " pt"
 
