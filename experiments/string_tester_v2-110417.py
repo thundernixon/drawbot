@@ -30,6 +30,69 @@ fallbackFont("Arial")
 
 counter = 1
 
+
+################# 😺 Trying Frederik's suggested method of targeting missing glyphs 😺 #################
+
+import AppKit
+import CoreText
+
+from fontTools.ttLib import TTFont
+from fontTools.misc.py23 import unichr
+
+def fontPath(fontName):
+    font = CoreText.CTFontDescriptorCreateWithNameAndSize(fontName, 10)
+    if font:
+        url = CoreText.CTFontDescriptorCopyAttribute(font, CoreText.kCTFontURLAttribute)
+        if url:
+            return url.path()
+    else:
+        # warn if font doest not exists
+        pass
+        
+    return None
+
+def listFontGlyphNames(fontName):
+    path = fontPath(fontName)
+    if path is None:
+        return []      
+    try:
+        fontToolsFont = TTFont(path, lazy=True, fontNumber=0)
+    except TTLibError:
+        # warn if fontTools cannot read the file
+        return []        
+    characters = []
+    glyphNames = fontToolsFont.getGlyphNames()
+    fontToolsFont.close()
+    if ".notdef" in glyphNames:
+        glyphNames.remove(".notdef")
+    return glyphNames
+
+
+
+fontName = "bilak-typecooker Regular"
+glyphNames = listFontGlyphNames(fontName)
+
+print glyphNames
+
+t = FormattedString(font=fontName)
+t.appendGlyph(*glyphNames)
+
+textBox(t, (0, 0, width(), height()))
+
+# ? for glyph in glyphNames, check if char matches ANY glyph in the list, and set a value to true
+# if value is false, make fill gray
+
+def checkIfGlyphExists(char):
+    for glyph in glyphNames:
+        if char in glyphNames:
+            glyphMatch = 1
+        else:
+            glyphMatch = 0
+    if glyphMatch == 0:
+        return fill(0.8,0,0)
+    else:
+        return fill(fontColor1)
+
 ################# 😺 TRIPLES LETTERS IN YOUR STRING, THEN SETS THEM AS TEXT 😺 #################
 def testWeights(string, fontName1, fontName2, fontName3):
     counter = 1
@@ -45,6 +108,7 @@ def testWeights(string, fontName1, fontName2, fontName3):
     
     for char in newString:
         if counter % 3 == 0:
+            # checkIfGlyphExists(char)
             fill(fontColor3)
             fontSize(fontSize3)
             font(fontName3)
@@ -53,6 +117,7 @@ def testWeights(string, fontName1, fontName2, fontName3):
                 fontSize(newFontSize3)
 
         elif (counter + 1) % 3 ==0:
+            # checkIfGlyphExists(char)
             fill(fontColor2)
             fontSize(fontSize2)
             font(fontName2)
@@ -61,7 +126,17 @@ def testWeights(string, fontName1, fontName2, fontName3):
                 fontSize(newFontSize2)
 
         else:
-            fill(fontColor1)
+            # fill(fontColor1)
+            checkIfGlyphExists(char)
+            for glyph in glyphNames:
+                if char in glyphNames:
+                    glyphMatch = 1
+                else:
+                    glyphMatch = 0
+            if glyphMatch == 0:
+                fill(0.8,0.8,0.8)
+            else:
+                fill(fontColor1)
             fontSize(fontSize1)
             font(fontName1)
         
