@@ -1,46 +1,60 @@
 gridSize = 50
 
-# class letterPath:
-#     def letter_a_path():
-#         path = BezierPath()
-#         path.moveTo(100,100)
-#         path.curveTo((100,200),(200,200),(200,100))
-#         path.lineTo((400,400))
-#         drawPath(path)
-#     def missing_glyph_path():
-#         path = BezierPath()
-#         path.moveTo(100,100)
-#         path.curveTo((100,200),(200,200),(200,100))
-#         path.lineTo((400,400))
-#         drawPath(path)
+def path_a():
+    letterWidth = 324
+    path = BezierPath()
+    path.moveTo((284, 410))
+    path.curveTo((42, 324),(102, 140),(204, 140))
+    path.curveTo((298, 140),(316, 250),(308, 426))
+    path.lineTo((280, 144))
+    path.lineTo((318, 194))
+    return path, letterWidth
+    
+def path_c():
+    letterWidth = 226
+    path = BezierPath()
+    path.moveTo((194, 324))
+    path.curveTo((230, 341),(250, 430),(146, 430))
+    path.curveTo((22, 430),(-22, 148),(130, 148))
+    path.curveTo((240, 148),(190, 254),(194, 250))
+    return path, letterWidth
 
+def path_e():
+    letterWidth = 192
+    path = BezierPath()
+    path.moveTo((42, 276))
+    path.curveTo((216, 259),(250, 430),(146, 430))
+    path.curveTo((22, 430),(-22, 148),(130, 148))
+    path.curveTo((240, 148),(190, 254),(142, 204))
+    return path, letterWidth
 
-path_a = BezierPath()
-path_a.moveTo((200, 650))
-path_a.curveTo((100,200),(200,200),(200,100))
-path_a.lineTo((400,400))
-
-path_e = BezierPath()
-path_e.moveTo((100, 650))
-path_e.curveTo((100,200),(200,200),(200,100))
-path_e.lineTo((400,400))
-
-missing_glyph_path = BezierPath()
-missing_glyph_path.moveTo((200, 650))
-missing_glyph_path.curveTo((100,200),(200,200),(200,100))
-missing_glyph_path.lineTo((400,400))
-
+def missing_glyph():
+    letterWidth = 192
+    path = BezierPath()
+    path.moveTo((66, 424))
+    path.lineTo((66, 156))
+    path.lineTo((166, 156))
+    path.lineTo((166, 422))
+    path.closePath()
+    return path, letterWidth
+    
+fill(1,1,1)
+stroke(1,0,0)
+strokeWidth(10)
+lineCap("round")
+lineJoin("round")
 
 fontPathDictionary = {
-    "a": path_a,
-    # "e": letter_e_path,
+    "a": path_a(),
+    "c": path_c(),
+    "e": path_e(),
     }
 
 def drawLetterPaths(txt):
     for char in txt:
         print char
-        path = fontPathDictionary.get(char, missing_glyph_path)
-        drawPath(path)
-        translate(7*gridSize,0)
+        path = fontPathDictionary.get(char, missing_glyph())
+        drawPath(path[0])
+        translate(path[1],0)
 
-drawLetterPaths("ae")
+drawLetterPaths("aced")
