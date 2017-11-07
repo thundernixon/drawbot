@@ -11,8 +11,8 @@ def spokedCircle(x, y, radius, centerRadius, spokes, spokeWidth):
 
 W, H = 1000, 1000
 
-frames = 20 # currently must be lower than number of maxSpokes
-rotations = 1
+frames = 50 # currently must be lower than number of maxSpokes
+rotations = 2
 totalSize = 1000
 spokes = 65
 maxSpokes = 75 # currently must be higher than number of frames
@@ -28,7 +28,7 @@ radius = starterRadius
 centerRadius = starterCenterRadius
     
 incrementDistance = (maxDistance - distance)/frames
-incrRadius = ((totalSize-starterRadius)/frames)*3.5
+incrRadius = ((totalSize-starterRadius)/frames)*4.5
 incrCenterRadius = ((totalSize-starterCenterRadius)/frames)*.25
 
 for i in range(frames):
@@ -41,8 +41,8 @@ for i in range(frames):
         radius -= incrRadius
         centerRadius += incrCenterRadius
         spokes += 3
-        print incrRadius, incrCenterRadius
-        print radius, centerRadius
+        fill(0.1,0.1,0.1)
+        print spokes
     else:
         # print "going down " + str(i*((maxDistance - distance)/frames))
         # distance -= i*((maxDistance - distance)/frames)
@@ -50,7 +50,7 @@ for i in range(frames):
         radius += incrRadius
         centerRadius -= incrCenterRadius
         spokes -= 3
-        print radius, centerRadius
+        print spokes
     fill(0.1,0.1,0.1)
     rect(0,0,1000,1000)
     # radius = totalSize - i*(totalSize/frames)
@@ -69,4 +69,4 @@ for i in range(frames):
 
     # translate(-500,-500+centerRadius)
 
-# saveImage("exports/moire_18-110717.gif")
+saveImage("exports/moire_21-110717.gif")
