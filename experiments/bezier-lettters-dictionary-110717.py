@@ -40,7 +40,7 @@ def missing_glyph():
     
 fill(1,1,1)
 stroke(1,0,0)
-strokeWidth(10)
+strokeWidth(16)
 lineCap("round")
 lineJoin("round")
 
