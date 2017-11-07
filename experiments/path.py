@@ -24,5 +24,4 @@ path = BezierPath()
 path.moveTo(a)
 path.curveTo(b,c,d)
 path.lineTo(e)
-1
 drawPath(path)

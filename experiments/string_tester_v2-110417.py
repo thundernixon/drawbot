@@ -73,13 +73,10 @@ def listFontGlyphNames(fontName):
         glyphNames.remove(".notdef")
     return glyphNames
 
+# glyphNames = listFontGlyphNames(fontName)
 
-
-fontName = "bilak-typecooker Regular"
-glyphNames = listFontGlyphNames(fontName)
-
-t = FormattedString(font=fontName)
-t.appendGlyph(*glyphNames)
+# t = FormattedString(font=fontName)
+# t.appendGlyph(*glyphNames)
 
 # textBox(t, (0, 0, width(), height()))
 
@@ -173,7 +170,7 @@ def calcNewSize(targetFontName, targetFontSize):
 import string
 alpha = string.lowercase
 
-fontName1, fontName2, fontName3 = "Times New Roman", "Arial", "CooperBlackStd"
+fontName1, fontName2, fontName3 = "Stroop Sans Book", "Stroop Book", "Stroop Extrabold"
 
 print "font size 1 is " + str(fontSize1) + " pt"
 
@@ -199,10 +196,10 @@ else:
 import datetime
 
 now = datetime.datetime.now()
-metadata = str(now) + ", font 1 is " + fontName1 + ", font 2 is " + fontName2 + ", font 3 is " + fontName3
+metadata = str(now) + " // font 1 is " + fontName1 + " at "  + str(round(fontSize1, 3)) + " pt; font 2 is " + fontName2 + " at "  + str(round(fontSize2, 3)) + " pt; font 3 is " + fontName3 + " at "  + str(round(fontSize3, 3)) + " pt"
 
 font("Verdana")
-fontSize(12)
+fontSize(9)
 
 textBox(metadata, (20, 0, width(), 30))
 
@@ -212,4 +209,4 @@ textBox(metadata, (20, 0, width(), 30))
 
 
 ################# 😺 SAVE AS A PDF IF YOU'D LIKE TO PRINT 😺 #################
-# saveImage("../exports/fonttest-110417.pdf")
+# saveImage("/Users/stephennixon/Dropbox/KABK_netherlands/type_media/02-tm_calligraphy/tests/stroop_xheights_test-110617.pdf")
