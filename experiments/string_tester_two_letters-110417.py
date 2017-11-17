@@ -10,17 +10,17 @@ Variable([
     dict(name="matchXHeights", ui="CheckBox"),
     dict(name="fontSize1", ui="Slider",
             args=dict(
-                value=95,
+                value=100,
                 minValue=75,
                 maxValue=125)),
     dict(name="fontSize2", ui="Slider",
             args=dict(
-                value=95,
+                value=100,
                 minValue=75,
                 maxValue=125)),
     dict(name="fontSize3", ui="Slider",
             args=dict(
-                value=95,
+                value=100,
                 minValue=75,
                 maxValue=125)),
     dict(name="fontColor1", ui="ColorWell"),
@@ -92,7 +92,7 @@ def testWeights(string, fontName1, fontName2, fontName3):
     counter = 1
     lineCount = 1
     textWidth = 0
-    starterPosX = 33
+    starterPosX = 50
     starterPosY = 125
     lineHeightValue = lineHeight
     positionX = starterPosX
@@ -209,4 +209,4 @@ textBox(metadata, (20, 0, width(), 30))
 
 
 ################# 😺 SAVE AS A PDF IF YOU'D LIKE TO PRINT 😺 #################
-saveImage("/Users/stephennixon/Dropbox/KABK_netherlands/type_media/02-tm_calligraphy/tests/stroop_caps_in_progress-110817.pdf")
+# saveImage("/Users/stephennixon/Dropbox/KABK_netherlands/type_media/02-tm_calligraphy/tests/stroop_caps_in_progress-110817.pdf")
