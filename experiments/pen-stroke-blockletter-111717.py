@@ -1,6 +1,6 @@
-newPage(500,500)
+# newPage(500,500)
 
-lineThickness = 6
+lineThickness = 1
 
 
 def drawStoke(pointA,pointB,angle, strokeWidth):
@@ -9,9 +9,9 @@ def drawStoke(pointA,pointB,angle, strokeWidth):
     translate(pointA[0],pointA[1])
     rotate(angle)
     translate(-pointA[0],-pointA[1])
-    fill(0.8,0.8,1)
+    # fill(0.8,0.8,1)
     # rect(0,0,500,500)
-    fill(0,0,1)
+    # fill(0,0,1)
     rect(pointA[0]-strokeWidth/2, pointA[1]-lineThickness/2, strokeWidth,lineThickness)
     restore()
     
@@ -19,7 +19,7 @@ def drawStoke(pointA,pointB,angle, strokeWidth):
     translate(pointB[0],pointB[1])
     rotate(angle)
     translate(-pointB[0],-pointB[1])
-    fill(1,0,0)
+    # fill(1,0,0)
     rect(pointB[0]-strokeWidth/2, pointB[1]-lineThickness/2, strokeWidth,lineThickness)
     restore()
     
@@ -29,8 +29,6 @@ def drawStoke(pointA,pointB,angle, strokeWidth):
     
     divisions =  int(distance / (lineThickness*2))
     # print int(floor(divisions))
-
-    # divisions = 10
     
     for div in range(divisions):
         currentT = (1/divisions) * div
@@ -48,4 +46,36 @@ def drawStoke(pointA,pointB,angle, strokeWidth):
             restore()
         
         
-drawStoke((112, 84), (386, 396), 100, 110)
+
+def path_k():
+    letterWidth = 200
+    drawStoke((76, 346), (106, 210), 221, 46)
+    drawStoke((126, 162), (46, 186), 45, 46)
+    drawStoke((176, 384), (104, 382), 65, 46)
+    drawStoke((133, 260), (216, 222), 54, 46)
+    drawStoke((152, 300), (236, 302), 76, 44)
+    drawStoke((193, 182), (244, 171), 65, 46)
+    return letterWidth
+    
+
+
+frameNum = 26
+lineThickness = frameNum
+
+for frame in range(frameNum):
+    newPage(500,500)
+    translate(54, -86)
+    scale(1.25)
+    lineThickness = frameNum-frame
+    path_k()
+
+
+# to use this pen tool on bezier paths, the math looks like...
+# x1,y1 = P1
+# x2,y2 = P2
+# x3,y3 = P3
+# x4,y4 = P4
+# x = x1*(1-t)**3 + x2*3*t*(1-t)**2 + x3*3*t**2*(1-t) + x4*t**3
+
+saveImage(
+# y = y1*(1-t)**3 + y2*3*t*(1-t)**2 + y3*3*t**2*(1-t) + y4*t**3
