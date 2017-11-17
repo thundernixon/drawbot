@@ -21,9 +21,18 @@ def drawStoke(pointA,pointB,angle, strokeWidth):
     translate(-pointB[0],-pointB[1])
     rect(pointB[0]-strokeWidth/2, pointB[1]-lineThickness/2, strokeWidth,lineThickness)
     restore()
+    
+    distance = sqrt((pointB[0]-pointA[0])*(pointB[0]-pointA[0]) + (pointB[1]-pointA[1])*(pointB[1]-pointA[1]))
+    
+    print "distance is " + str(distance)
+    
+    divisions =  distance / (lineThickness*0.5)
+    
+    print int(floor(divisions))
+    
     # rect with pointB as center, rotated to angle
     # rects posititioned between pointA and pointB, with center points interpolated with a divisor of
         # distance pointA - pointB divided by strokeDistance
         
         
-drawStoke((200, 352), (294, 126), 26, 260)
+drawStoke((66, 328), (368, 260), 46, 90)
