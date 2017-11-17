@@ -87,6 +87,11 @@ def path_k():
         ((193, 182), (244, 171), 65, 46),
     ]
     return strokes, letterWidth
+    
+
+# path_a()
+
+# path_b()
 
 def missing_glyph():
     letterWidth = 240
@@ -107,42 +112,46 @@ fontPathDictionary = {
     }
 
 
-frameNum = 15
-lineThickness = frameNum
+frameNum = 10
+# lineThickness = frameNum
+lineThickness = 3
 
 for frame in range(frameNum):
     # frameDuration(.05)
-    newPage(1000,1000) 
+    # newPage(1000,1000) 
+    newPage(500,500) 
     fill(0,0,1)
     rect(0,0,1000,1000)
     fill(1,1,1)
-    lineThickness = frameNum*cos(frame*.5+1)
+    # lineThickness = frameNum*cos(frame*5+50)
     def drawLetterPaths(txt):
         cursor = 0
-        # scale(.85) # 500,500
-        scale(1.7)
+        scale(.85) # 500,500
+        # scale(1.7) # 1000, 1000
         translate(20, 160)
         for char in txt:
-            print char
-            letter = fontPathDictionary.get(char) # missing_glyph())
+            # print char
+            letter = fontPathDictionary.get(char, missing_glyph())
         
-            print letter[0]
+            # print letter[0]
        
             for stroke in letter[0]:
-                drawStroke(stroke[0],stroke[1],stroke[2],stroke[3])
+                pointA, pointB = stroke[0], stroke[1]
+                print pointA[0]*randint(2,3)
+                drawStroke((pointA[0]*randint(-2,3), pointA[1]),(pointB[0]*randint(-2,3), pointB[1]),stroke[2],stroke[3])
             
             if cursor > 200:
                 cursor = 0
                 translate(-240, -290)
-                print "cursor is " + str(cursor)
+                # print "cursor is " + str(cursor)
             else:
                 translate(letter[1],0)
                 cursor += letter[1]
-                print "cursor is " + str(cursor)
+                # print "cursor is " + str(cursor)
         
-    drawLetterPaths("kabk")
+    drawLetterPaths("k")
         
-saveImage("../../exports/gifs/blockletter-kabk-2-111717.gif")
+# saveImage("../../exports/gifs/blockletter-kabk-5-111717.gif")
 
 # frameNum = 20
 # lineThickness = frameNum
