@@ -26,4 +26,4 @@ def drawStoke(pointA,pointB,angle, strokeWidth):
         # distance pointA - pointB divided by strokeDistance
         
         
-drawStoke((170, 380), (310, 236), 26, 300)
+drawStoke((200, 352), (294, 126), 26, 260)
