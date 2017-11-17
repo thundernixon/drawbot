@@ -1,4 +1,4 @@
-def drawStoke(pointA,pointB,angle, strokeWidth):
+def drawStroke(pointA,pointB,angle, strokeWidth):
     # rect with pointA as center, rotated to angle
     save()
     translate(pointA[0],pointA[1])
@@ -23,7 +23,6 @@ def drawStoke(pointA,pointB,angle, strokeWidth):
     # print "distance is " + str(distance)
     
     divisions =  int(distance / (lineThickness*2))
-    # print int(floor(divisions))
     
     for div in range(divisions):
         currentT = (1/divisions) * div
@@ -39,5 +38,3 @@ def drawStoke(pointA,pointB,angle, strokeWidth):
             translate(-x,-y)
             rect(x-strokeWidth/2, y-lineThickness/2, strokeWidth,lineThickness)
             restore()
-            
-print "hello"

@@ -1,3 +1,5 @@
+from letters import *
+
 def drawStroke(pointA,pointB,angle, strokeWidth):
     # rect with pointA as center, rotated to angle
     save()
@@ -41,54 +43,6 @@ def drawStroke(pointA,pointB,angle, strokeWidth):
 
 
 lineThickness = 3
-        
-def path_a():
-    letterWidth = 272
-    strokes = [
-        ((132, 344), (106, 210), 205, 46),
-        ((126, 162), (46, 186), 45, 46),
-        ((164, 377), (238, 372), 65, 46),
-        ((210, 340), (246, 214), 205, 46),
-        ((210, 186), (272, 174), 45, 46),
-        ((154, 276), (188, 256), 45, 46)
-        ]
-    # def shapes():
-    #     drawStoke((132, 344), (106, 210), 205, 46)
-    #     drawStoke((126, 162), (46, 186), 45, 46)
-    #     drawStoke((164, 377), (238, 372), 65, 46)
-    #     drawStoke((210, 340), (246, 214), 205, 46)
-    #     drawStoke((210, 186), (272, 174), 45, 46)
-    #     drawStoke((154, 276), (188, 256), 45, 46)
-    return strokes, letterWidth       
-
-def path_b():
-    letterWidth = 240
-    strokes = [
-        ((70, 392), (106, 210), 205, 46),
-        ((46, 180), (182, 176), 57, 46),
-        ((114, 374), (216, 394), 57, 46),
-        ((228, 379), (205, 321), 196, 46),
-        ((128, 296), (224, 290), 57, 46),
-        ((236, 271), (218, 200), 8, 46),
-    ]
-    return strokes, letterWidth
-
-def path_k():
-    letterWidth = 240
-    strokes = [
-        ((76, 346), (104, 213), 221, 46),
-        ((134, 168), (46, 186), 45, 46),
-        ((176, 384), (104, 382), 65, 46),
-        ((133, 260), (216, 222), 54, 46),
-        ((152, 300), (236, 302), 76, 44),
-        ((193, 182), (244, 171), 65, 46),
-    ]
-    return strokes, letterWidth
-    
-
-# path_a()
-
-# path_b()
 
 def missing_glyph():
     letterWidth = 240
@@ -109,16 +63,15 @@ fontPathDictionary = {
     }
 
 
-frameNum = 40
+frameNum = 10
 # lineThickness = frameNum
 lineThickness = 3
 
-rand1 = -100
+rand1 = 0
+rand2 = 0
 
-rand2 = 200
-
-decreaseRand1 = -rand1/frameNum
-decreaseRand2 = rand2/frameNum
+decreaseRand1 = -100/frameNum*2
+decreaseRand2 = 200/frameNum*2
 
 for frame in range(frameNum):
     
@@ -129,11 +82,15 @@ for frame in range(frameNum):
     rect(0,0,1000,1000)
     fill(1,1,1)
     
-    
-    rand1 += decreaseRand1
-    # print int(rand1)
-    rand2 -= decreaseRand2
-    # print int(rand2)
+    if frame < frameNum/2:
+        rand1 -= decreaseRand1
+        # print int(rand1)
+        rand2 += decreaseRand2
+        # print int(rand2)
+        
+    else: 
+        rand1 += decreaseRand1
+        rand2 -= decreaseRand2
     # lineThickness = frameNum*cos(frame*5+50)
     def drawLetterPaths(txt):
         cursor = 0
@@ -160,7 +117,7 @@ for frame in range(frameNum):
                 drawStroke(
                     (pointA[0]+randint(int(rand1),int(rand2)), pointA[1]),
                     (pointB[0]+randint(int(rand1),int(rand2)), pointB[1]),
-                    stroke[2]+rand1,
+                    stroke[2]*rand1,
                     stroke[3])
             
             # start as normal letters
