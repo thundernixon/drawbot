@@ -39,11 +39,8 @@ def drawStroke(pointA,pointB,angle, strokeWidth):
             rect(x-strokeWidth/2, y-lineThickness/2, strokeWidth,lineThickness)
             restore()
 
-# newPage(500,500)
 
 lineThickness = 3
-
-# drawstroke = drawstroke.drawStroke
         
 def path_a():
     letterWidth = 272
@@ -112,17 +109,31 @@ fontPathDictionary = {
     }
 
 
-frameNum = 10
+frameNum = 40
 # lineThickness = frameNum
 lineThickness = 3
 
+rand1 = -100
+
+rand2 = 200
+
+decreaseRand1 = -rand1/frameNum
+decreaseRand2 = rand2/frameNum
+
 for frame in range(frameNum):
-    # frameDuration(.05)
+    
     # newPage(1000,1000) 
     newPage(500,500) 
+    # frameDuration(.25)
     fill(0,0,1)
     rect(0,0,1000,1000)
     fill(1,1,1)
+    
+    
+    rand1 += decreaseRand1
+    # print int(rand1)
+    rand2 -= decreaseRand2
+    # print int(rand2)
     # lineThickness = frameNum*cos(frame*5+50)
     def drawLetterPaths(txt):
         cursor = 0
@@ -135,10 +146,26 @@ for frame in range(frameNum):
         
             # print letter[0]
        
+            # rand1 = -200
+            # rand2 = 300
             for stroke in letter[0]:
+                # rand1 += -rand1/frameNum
+                # print rand1
+                # rand2 -= rand2/frameNum
                 pointA, pointB = stroke[0], stroke[1]
-                print pointA[0]*randint(2,3)
-                drawStroke((pointA[0]*randint(-2,3), pointA[1]),(pointB[0]*randint(-2,3), pointB[1]),stroke[2],stroke[3])
+                # print pointA[0]*randint(2,3)
+
+                print "rand1 is " + str(rand1)
+                print "rand2 is " + str(rand2)
+                drawStroke(
+                    (pointA[0]+randint(int(rand1),int(rand2)), pointA[1]),
+                    (pointB[0]+randint(int(rand1),int(rand2)), pointB[1]),
+                    stroke[2]+rand1,
+                    stroke[3])
+            
+            # start as normal letters
+            # incrementally randomize coordinates; first quickly and then more slowly
+            # after half the frames have elapsed, start to make coordinates less random (reverse explosion)
             
             if cursor > 200:
                 cursor = 0
@@ -149,24 +176,9 @@ for frame in range(frameNum):
                 cursor += letter[1]
                 # print "cursor is " + str(cursor)
         
-    drawLetterPaths("k")
+    drawLetterPaths("kabk")
         
-# saveImage("../../exports/gifs/blockletter-kabk-5-111717.gif")
-
-# frameNum = 20
-# lineThickness = frameNum
-
-# for frame in range(frameNum):
-#     newPage(1000,1000)
-#     fill(0,0,1)
-#     rect(0,0,1000,1000)
-#     fill(1,1,1)
-#     translate(54, -316)
-#     scale(3)
-#     lineThickness = frameNum*cos(frame*.25+10)
-#     path_k()
-
-# saveImage("../exports/gifs/blockletter-k-6-111717.gif")
+# saveImage("../../exports/gifs/blockletter-kabk-7-111717.gif")
 
 
 # to use this pen tool on bezier paths, the math looks like...
