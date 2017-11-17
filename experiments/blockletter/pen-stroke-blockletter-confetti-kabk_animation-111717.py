@@ -41,9 +41,6 @@ def drawStroke(pointA,pointB,angle, strokeWidth):
             rect(x-strokeWidth/2, y-lineThickness/2, strokeWidth,lineThickness)
             restore()
 
-
-lineThickness = 3
-
 def missing_glyph():
     letterWidth = 240
     strokes = [
@@ -65,7 +62,7 @@ fontPathDictionary = {
 
 frameNum = 10
 # lineThickness = frameNum
-lineThickness = 3
+lineThickness = 8
 
 rand1 = 0
 rand2 = 0
@@ -77,20 +74,20 @@ for frame in range(frameNum):
     
     # newPage(1000,1000) 
     newPage(500,500) 
-    # frameDuration(.25)
+    frameDuration(.25)
     fill(0,0,1)
     rect(0,0,1000,1000)
     fill(1,1,1)
     
     if frame < frameNum/2:
-        rand1 -= decreaseRand1
-        # print int(rand1)
-        rand2 += decreaseRand2
+        rand1 += (-decreaseRand1)*.25
+        rand2 += (decreaseRand2)*.5
         # print int(rand2)
         
-    else: 
-        rand1 += decreaseRand1
-        rand2 -= decreaseRand2
+    else:
+        rand1 += (decreaseRand1)*.25
+        rand2 -= (decreaseRand2)*.5
+        
     # lineThickness = frameNum*cos(frame*5+50)
     def drawLetterPaths(txt):
         cursor = 0
@@ -115,14 +112,16 @@ for frame in range(frameNum):
                 print "rand1 is " + str(rand1)
                 print "rand2 is " + str(rand2)
                 drawStroke(
-                    (pointA[0]+randint(int(rand1),int(rand2)), pointA[1]),
-                    (pointB[0]+randint(int(rand1),int(rand2)), pointB[1]),
-                    stroke[2]*rand1,
+                    (pointA[0]-rand2, pointA[1]),
+                    (pointB[0]+rand1, pointB[1]),
+                    stroke[2]+(rand1),
                     stroke[3])
             
             # start as normal letters
             # incrementally randomize coordinates; first quickly and then more slowly
             # after half the frames have elapsed, start to make coordinates less random (reverse explosion)
+            
+            # currently, this isn't random ... coordinates are just moving one way, then back. but a prior attempt to make it random made it just wobble. I need some way to randomize this onto different pieces of each letter...
             
             if cursor > 200:
                 cursor = 0
@@ -135,7 +134,7 @@ for frame in range(frameNum):
         
     drawLetterPaths("kabk")
         
-# saveImage("../../exports/gifs/blockletter-kabk-7-111717.gif")
+# saveImage("../../exports/gifs/blockletter-kabk-13-111717.gif")
 
 
 # to use this pen tool on bezier paths, the math looks like...
