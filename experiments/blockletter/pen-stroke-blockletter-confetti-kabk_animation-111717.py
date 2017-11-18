@@ -60,82 +60,111 @@ fontPathDictionary = {
     }
 
 
-frameNum = 10
-# lineThickness = frameNum
-lineThickness = 8
+
+
+
+def drawLetterPaths(txt, rand1, rand2):
+    cursor = 0
+    translate(20, 160)
+    for char in txt:
+
+        letter = fontPathDictionary.get(char, missing_glyph())
+    
+        for stroke in letter[0]:
+            # rand1 += -rand1/frameNum
+            # print rand1
+            # rand2 -= rand2/frameNum
+            pointA, pointB = stroke[0], stroke[1]
+            # print pointA[0]*randint(2,3)
+
+            # print "rand1 is " + str(rand1)
+            # print "rand2 is " + str(rand2)
+            drawStroke(
+                (pointA[0]-rand2*randint(-4,4), pointA[1]-rand2*randint(-4,4)),
+                (pointB[0]+rand1*randint(-4,4), pointB[1]+rand1*randint(-4,4)),
+                stroke[2]+(rand1),
+                stroke[3])
+        
+
+        
+        if cursor > 200:
+            cursor = 0
+            translate(-240, -290)
+            # print "cursor is " + str(cursor)
+        else:
+            translate(letter[1],0)
+            cursor += letter[1]
+            # print "cursor is " + str(cursor)
+
+
+frameNum = 20
+lineThickness = 2
 
 rand1 = 0
 rand2 = 0
 
-decreaseRand1 = -100/frameNum*2
-decreaseRand2 = 200/frameNum*2
+# decreaseRand1 = randint(-300,-50)/frameNum
+# decreaseRand2 = randint(100,300)/frameNum
+
+decreaseRand1 = -300
+decreaseRand2 = 300
+
+currentScale = 85
+scaleUp = 0
+scaleFactor = 0
 
 for frame in range(frameNum):
     
     # newPage(1000,1000) 
     newPage(500,500) 
-    frameDuration(.25)
+    
+    # scale(1.7) # 1000, 1000
+    
+    # frameDuration(.25)
     fill(0,0,1)
     rect(0,0,1000,1000)
     fill(1,1,1)
     
-    if frame < frameNum/2:
-        rand1 += (-decreaseRand1)*.25
-        rand2 += (decreaseRand2)*.5
-        # print int(rand2)
+    angle = 0
         
+    if frame < frameNum/2:
+        # angle += sin(360/frameNum * (frame*0.125))
+        scaleUp += scaleFactor
+        print angle
+        scale(currentScale*.01 + scaleUp*.01) # 500,500
+        # translate(-scaleUp*2,-scaleUp*2)
+        rand1 += sin(-decreaseRand1)
+        rand2 += sin(decreaseRand2)
+        # print int(rand2)
+
     else:
-        rand1 += (decreaseRand1)*.25
-        rand2 -= (decreaseRand2)*.5
+        # angle -= sin(360/frameNum * (frame*0.125))
+        angle -= frameNum 
+        scaleUp -= scaleFactor
+        print angle
+        scale(currentScale*.01 + scaleUp*.01)
+        # translate(-scaleUp*2,-scaleUp*2)
+        rand1 += sin(decreaseRand1)
+        rand2 -= sin(decreaseRand2)
         
     # lineThickness = frameNum*cos(frame*5+50)
-    def drawLetterPaths(txt):
-        cursor = 0
-        scale(.85) # 500,500
-        # scale(1.7) # 1000, 1000
-        translate(20, 160)
-        for char in txt:
-            # print char
-            letter = fontPathDictionary.get(char, missing_glyph())
+    
         
-            # print letter[0]
-       
-            # rand1 = -200
-            # rand2 = 300
-            for stroke in letter[0]:
-                # rand1 += -rand1/frameNum
-                # print rand1
-                # rand2 -= rand2/frameNum
-                pointA, pointB = stroke[0], stroke[1]
-                # print pointA[0]*randint(2,3)
+    drawLetterPaths("kabk", rand1, rand2)
+        
+saveImage("../../exports/gifs/blockletter-kabk-19-111717.gif")
 
-                print "rand1 is " + str(rand1)
-                print "rand2 is " + str(rand2)
-                drawStroke(
-                    (pointA[0]-rand2, pointA[1]),
-                    (pointB[0]+rand1, pointB[1]),
-                    stroke[2]+(rand1),
-                    stroke[3])
-            
-            # start as normal letters
-            # incrementally randomize coordinates; first quickly and then more slowly
-            # after half the frames have elapsed, start to make coordinates less random (reverse explosion)
-            
-            # currently, this isn't random ... coordinates are just moving one way, then back. but a prior attempt to make it random made it just wobble. I need some way to randomize this onto different pieces of each letter...
-            
-            if cursor > 200:
-                cursor = 0
-                translate(-240, -290)
-                # print "cursor is " + str(cursor)
-            else:
-                translate(letter[1],0)
-                cursor += letter[1]
-                # print "cursor is " + str(cursor)
-        
-    drawLetterPaths("kabk")
-        
-# saveImage("../../exports/gifs/blockletter-kabk-13-111717.gif")
 
+
+########### NOTES ###########
+
+# start as normal letters
+# incrementally randomize coordinates; first quickly and then more slowly
+# after half the frames have elapsed, start to make coordinates less random (reverse explosion)
+
+# currently, this isn't random ... coordinates are just moving one way, then back. but a prior attempt to make it random made it just wobble. I need some way to randomize this onto different pieces of each letter...
+
+#####
 
 # to use this pen tool on bezier paths, the math looks like...
 # x1,y1 = P1
