@@ -6,9 +6,7 @@ def drawStroke(pointA,pointB,angle, strokeWidth):
     translate(pointA[0],pointA[1])
     rotate(angle)
     translate(-pointA[0],-pointA[1])
-    # fill(0.8,0.8,1)
-    # rect(0,0,500,500)
-    # fill(0,0,1)f
+
     rect(pointA[0]-strokeWidth/2, pointA[1]-lineThickness/2, strokeWidth,lineThickness)
     restore()
     
@@ -16,7 +14,6 @@ def drawStroke(pointA,pointB,angle, strokeWidth):
     translate(pointB[0],pointB[1])
     rotate(angle)
     translate(-pointB[0],-pointB[1])
-    # fill(1,0,0)
     rect(pointB[0]-strokeWidth/2, pointB[1]-lineThickness/2, strokeWidth,lineThickness)
     restore()
     
