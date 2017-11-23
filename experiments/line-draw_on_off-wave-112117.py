@@ -3,7 +3,7 @@ fullLength = 800
 
 lineEraserGap = 0
 
-frames = 40
+frames = 60
 lines = 35
 topLine = 900
 bottomLine = 100
@@ -45,4 +45,4 @@ for frame in range(frames):
     stroke(0,1,0)
     wavyLines()
     
-saveImage("../exports/gifs/line-draw-8.gif")
+saveImage("../exports/gifs/line-draw-8.mov")

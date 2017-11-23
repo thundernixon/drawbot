@@ -3,10 +3,11 @@ fullLength = 800
 
 lineEraserGap = 0
 
-frames = 40
-lines = 35
+frames = 20
+lines = 90
 topLine = 900
 bottomLine = 100
+startLength = 200
 
 lineSpace = (topLine - bottomLine)/(lines - 1)
 
@@ -15,8 +16,8 @@ def wavyLines():
         # print bottomLine + i * lineSpace
         angle = 360 * i / lines
         angle += t * 360 # change this number to see wave move! 0 and 360 give the same result            
-        currentLength = 250 + amplitude * sin(radians(angle+45)) 
-        lineEraserGap  = 250 +  amplitude * sin(radians(angle))
+        currentLength = startLength + amplitude * sin(radians(angle+45)) 
+        lineEraserGap  = startLength +  amplitude * sin(radians(angle))
         # short segment, gap that will grow, segment that will grow, full length of line
         lineDash(.1,lineEraserGap,currentLength,fullLength)
         y = bottomLine + i * lineSpace
@@ -25,34 +26,34 @@ def wavyLines():
 
 for frame in range(frames):
     newPage(1000,1000) # set page size here to avoid a blank first page
-    fill(0,0,.5)
+    fill(0,0,0)
     rect(0,0,1000,1000)
      # make stroke black
-    strokeWidth(10) # make stroke 10px thick
+    strokeWidth(2) # make stroke 10px thick
     lineCap("round") # round endcaps
     # if it's the first half of the animation...
 
-    amplitude = 250
+    amplitude = 300
     t = frame / frames
     
-    blendMode("difference")
+    blendMode("screen")
 
-    stroke(1,0,0)
+    stroke(1,.35)
     wavyLines()
     
     rotate(90)
     translate(0,-1000)
-    stroke(0,1,0)
+    stroke(1,.35)
     wavyLines()
     
     rotate(90)
     translate(0,-1000)
-    stroke(0,1,0)
+    stroke(1,.35)
     wavyLines()
     
     rotate(90)
     translate(0,-1000)
-    stroke(1,0,0)
+    stroke(1,.35)
     wavyLines()
     
-saveImage("../exports/gifs/line-draw-10.gif")
+saveImage("../exports/gifs/line-draw-13.gif")

@@ -139,4 +139,4 @@ for frame in range(frames):
                 fill( interpolate( colorA[0] , colorB[0], t * random() ), interpolate(colorA[1] * random() *.5, colorB[1], t * random()), interpolate(colorA[2], colorB[2], t * random()), .5)
             rect(x, y, squareWidth, squareHeight)
 
-saveImage('../gifs/checkerboard-a-masking.gif')
+saveImage('../exports/gifs/checkerboard-a-masking.gif')

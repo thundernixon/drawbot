@@ -1,0 +1,32 @@
+html {
+margin: 0;
+height: 100vh;
+}
+
+body {
+height: 100vh;
+display: grid;
+grid-template-columns: repeat(3,1fr);
+grid-gap: 1vw;
+grid-auto-rows:minmax(100px,49vh);
+background: black;
+}
+
+div {
+background: red;
+}
+
+.one, .four{
+grid-column: 1/2;
+background:blue;
+}
+.two, .five{
+    grid-column: 2/3;
+}
+.three, .six{
+    grid-column: 3/4;
+}
+
+div img {
+    object-fit: cover;
+  }
