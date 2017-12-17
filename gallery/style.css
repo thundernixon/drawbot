@@ -1,32 +1,32 @@
 html {
 margin: 0;
-height: 100vh;
+/* height: 100vh; */
 }
 
 body {
 height: 100vh;
 display: grid;
-grid-template-columns: repeat(3,1fr);
+grid-template-columns: repeat(2,1fr);
 grid-gap: 1vw;
-grid-auto-rows:minmax(100px,49vh);
+grid-auto-rows:minmax(100px,49vw);
 background: black;
+align-content: center;
 }
 
 div {
-background: red;
+height: 48vw;
 }
 
-.one, .four{
+.one{
 grid-column: 1/2;
-background:blue;
 }
-.two, .five{
+.two{
     grid-column: 2/3;
-}
-.three, .six{
-    grid-column: 3/4;
 }
 
 div img {
+    display: grid;
     object-fit: cover;
+    width: 100%;
+    border-radius: 5px;
   }

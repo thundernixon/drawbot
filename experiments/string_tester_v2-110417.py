@@ -29,6 +29,8 @@ Variable([
     dict(name="missingGlyphColor", ui="ColorWell", args=dict(color=_color)),
 ], globals())
 
+# add a maxNumPerLine for better controlling text amount
+
 size('A3')
 
 fontSize(100)
@@ -168,7 +170,10 @@ def calcNewSize(targetFontName, targetFontSize):
 
 ################# ✅ You can add custom fonts here ✅ #################
 import string
-alpha = string.uppercase
+# alpha = string.uppercase
+alpha = string.lowercase
+# customString = "The Royal Academy of Art is an art academy in The Hague. Succeeding the Haagsche Teeken-Academie, the academy was founded on 29 September 1682, making it the oldest in the Netherlands"
+
 
 fontName1, fontName2, fontName3 = "Stroop Sans Book", "Stroop Book", "Stroop Extrabold"
 
@@ -186,6 +191,7 @@ else:
     print "font size 3 is " + str(fontSize3) + " pt"
 
 if customString != "":
+    customString.replace(" ","")
     testWeights(customString, fontName1, fontName2, fontName3) # use your string as an argument
 else:
     testWeights(alpha, fontName1, fontName2, fontName3)
@@ -209,4 +215,4 @@ textBox(metadata, (20, 0, width(), 30))
 
 
 ################# 😺 SAVE AS A PDF IF YOU'D LIKE TO PRINT 😺 #################
-saveImage("/Users/stephennixon/Dropbox/KABK_netherlands/type_media/02-tm_calligraphy/tests/stroop_caps_in_progress-110817.pdf")
+# saveImage("/Users/stephennixon/Dropbox/KABK_netherlands/type_media/02-tm_calligraphy/tests/stroop_caps_in_progress-112217.pdf")
