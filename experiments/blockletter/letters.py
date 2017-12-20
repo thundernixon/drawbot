@@ -28,6 +28,16 @@ def path_b():
         ((236, 271), (218, 200), 8, 46),
     ]
     return strokes, letterWidth
+    
+def path_d():
+    letterWidth = 240
+    strokes = [
+        ((76, 346), (96, 210), 221, 46),
+        ((36, 181), (164, 172), 45, 46),
+        ((196, 342), (198, 204), 221, 46),
+        ((55, 381), (229, 374), 45, 46)
+    ]
+    return strokes, letterWidth 
 
 def path_k():
     letterWidth = 240
