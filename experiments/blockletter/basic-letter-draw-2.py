@@ -40,23 +40,23 @@ def path_a():
     letterWidth = 272
     strokes = [
         
-        ((126, 162), (46, 186), 45, 46), # left bottom serif
-        ((132, 344), (106, 210), 205, 46), # left stem
-        ((164, 377), (238, 372), 65, 46), # top bar
-        ((210, 340), (246, 214), 205, 46), # right stem
-        ((210, 186), (272, 174), 45, 46), # right bottom serif
-        ((154, 276), (188, 256), 45, 46) # central crossbar
+        ((16, 186), (96, 162),  45, 46), # left bottom serif
+        ((102, 347), (76, 207), 205, 46), # left stem
+        ((54, 387), (208, 372), 65, 46), # top bar
+        ((180, 340), (216, 214), 205, 46), # right stem
+        ((180, 186), (242, 174), 45, 46), # right bottom serif
+        ((124, 276), (158, 256), 45, 46) # central crossbar
         ]
     return strokes, letterWidth   
 
 def path_d():
     letterWidth = 240
     strokes = [
-        ((110, 349), (123, 212), 221, 46),
-        ((36, 181), (161, 172), 45, 46),
-        ((197, 348), (198, 201), 211, 46),
-        ((45, 387), (231, 378), 45, 46),
-        ((54, 324), (64, 234), 221, 46)
+        ((110, 349), (123, 207), 221, 46), # main stem
+        ((36, 181), (171, 165), 45, 46), # bottom
+        ((199, 350), (208, 194), 211, 46), # right of bowl
+        ((45, 387), (231, 382), 54, 46), # top bar
+        ((54, 324), (64, 234), 221, 46) # left decorator
     ]
     return strokes, letterWidth 
 
@@ -88,13 +88,13 @@ def path_r():
 def path_w():
     letterWidth = 240
     strokes = [
-        ((100, 386), (38, 386), 65, 46), # left top serif
-        ((72, 352), (68, 205), 211, 46), #left stem
-        ((34, 176), (105, 174), 45, 46), # bottom of left
-        ((142, 373), (141, 203), 211, 46), #middle stem
-        ((139, 174), (204, 176), 135, 46), # bottom of right
-        ((222, 352), (210, 203), 211, 46), #middle stem
-        ((200, 386), (250, 386), 65, 46), # right top serif
+        ((8, 386), (70, 386),  65, 46), # left top serif
+        ((42, 352), (48, 205), 211, 46), #left stem
+        ((14, 176), (85, 174), 45, 46), # bottom of left
+        ((115, 373), (121, 203), 211, 46), #middle stem
+        ((119, 174), (184, 176), 135, 46), # bottom of right
+        ((202, 352), (190, 203), 211, 46), #middle stem
+        ((168, 386), (230, 386), 65, 46), # right top serif
 
     ]
     return strokes, letterWidth
