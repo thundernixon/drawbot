@@ -170,8 +170,8 @@ def calcNewSize(targetFontName, targetFontSize):
 
 ################# ✅ You can add custom fonts here ✅ #################
 import string
-# alpha = string.uppercase
-alpha = string.lowercase
+alpha = string.uppercase
+# alpha = string.lowercase
 # customString = "The Royal Academy of Art is an art academy in The Hague. Succeeding the Haagsche Teeken-Academie, the academy was founded on 29 September 1682, making it the oldest in the Netherlands"
 
 
@@ -215,4 +215,6 @@ textBox(metadata, (20, 0, width(), 30))
 
 
 ################# 😺 SAVE AS A PDF IF YOU'D LIKE TO PRINT 😺 #################
-# saveImage("/Users/stephennixon/Dropbox/KABK_netherlands/type_media/02-tm_calligraphy/tests/stroop_caps_in_progress-112217.pdf")
+# saveImage("/Users/stephennixon/Dropbox/KABK_netherlands/type_media/02-tm_contrast/tests/stroop_sharper_uc_in_progress-010718.svg")
+
+# help(saveImage)
