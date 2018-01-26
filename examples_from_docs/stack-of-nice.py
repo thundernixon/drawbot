@@ -18,6 +18,8 @@ for frame in range(NFRAMES):
     phase = 2 * pi * frame / NFRAMES  # angle in radians
     startAngle = 135 * sin(phase)
     endAngle = 135 * sin(phase + pi * .5)
+    
+    print startAngle
 
     translate(CANVAS/2, CANVAS/2 - width+25)
     
