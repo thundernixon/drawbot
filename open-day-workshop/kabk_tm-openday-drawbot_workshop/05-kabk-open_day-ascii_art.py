@@ -1,11 +1,11 @@
 asciiArt = """
--------
--x-x-x-
--x-x-x-
--xxx-x-
--x-x-x-
--x-x-x-
--------
+---------
+-x-x-x-x-
+-x-x-x-x-
+-xxx-x-x-
+-x-x-x-0-
+-x-x-x-x-
+---------
 """
 
 
@@ -22,16 +22,21 @@ rect(0,0,canvasWidth, canvasHeight)
 
 ### do stuff for pixels that have "x" in ASCII art
 def pixelOn():
-    fill(0,0,.25)
+    r = randint(0,100) * .01
+    print(r)
+    fill(r,0,.75)
     rect(200,200,500,500)
-    fill(0,0,1)
+    r = randint(0,100) * .01
+    print(r)
+    fill(0,r,.75)
     rect(400,400,500,500)
+    rect(400,400,800,800)
 
 ### do stuff for any other pixel in ASCII art    
 def pixelOff():
     # set RGB color
     fill(1,1,1,.15)
-    oval(450,450,100,100)
+    oval(450,450,218, 582)
 
 
 
